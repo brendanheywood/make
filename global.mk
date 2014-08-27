@@ -45,18 +45,15 @@ EnvList ?= stage
 # load more targets accordingly
 include make/project/$(ProjectType).mk
 
-make-debug-config:
+config: config-project
+	@echo
 	##########################
 	# Global config          #
 	##########################
 	@echo "Project type: $(ProjectType)"
 	@echo "Project name: $(ProjectName)"
 	@echo "Environments: $(EnvList)"
-	@echo
-	##########################
-	# Project config         #
-	##########################
-	@echo
 
-.PHONY : make-debug-config
+# Almost targets should always be .PHONY
+.PHONY : config
 

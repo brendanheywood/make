@@ -1,4 +1,8 @@
-detect-config:
+config-project:
+	##########################
+	# Project config         #
+	##########################
+	@echo
 	@echo "Loading config.php"
 
 	# load LocalDBType
