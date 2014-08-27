@@ -1,0 +1,20 @@
+
+backup-stage-to-local:
+	# This takes about a minute...
+	# sudo -u postgres pg_dump -Fc alfredhealth-moodle > /tmp/alfredhealth-moodle.sql.gz
+	# This takes up to 15 minutes ...
+	scp $(StageDB):/tmp/alfredhealth-moodle.sql.gz /tmp/
+
+restore-from-local:
+	# This takes up to 10 minutes ...
+	sudo -l
+	sudo -u postgres pg_restore -d alfredhealth-moodle /tmp/alfredhealth-moodle.sql.gz
+
+release-to-stage:
+	# ls -l ../*$(VERSION)*
+	scp ../*$(VERSION)* caldara:/repo-stage
+
+refresh-sitedata-from-stage:
+	# /var/lib/sitedata/moodle-site-alfredhealth
+	#rsync --dry-run -arv $(STAGEWEB):/var/lib/sitedata/moodle-site-alfredhealth  /var/lib/sitedata/moodle-site-alfredhealth
+	rsync -arv $(STAGEWEB):/var/lib/sitedata/moodle-site-alfredhealth  /var/lib/sitedata/
