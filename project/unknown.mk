@@ -1,7 +1,12 @@
 
 config-project:
-	@echo "There is no config we can load because we don't know "
-	@echo "what type ofproject you are!"
+	##########################
+	# Undefined config       #
+	##########################
+	@echo "There is no config we can load because we don't know what type of project"
+	@echo "you are! You should either declare your own make targets consistent with"
+	@echo "this library or if your project 'type' is re-usable (eg a 'moodle') then"
+	@echo "you should consider adding support to this makefile target library"
 
 help-me-with-this-thing:
 	@echo "You're in the right place!"

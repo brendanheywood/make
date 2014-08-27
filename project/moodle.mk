@@ -1,6 +1,6 @@
 config-project:
 	##########################
-	# Project config         #
+	# Moodle config          #
 	##########################
 	@echo
 	@echo "Loading config.php"
