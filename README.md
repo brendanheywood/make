@@ -35,15 +35,7 @@ That's it!
 How to contribute
 =================
 
-
- split parts of makefiles apart, so a Makefile for mysql and a makefile for postgres
- a makefile for moodle, and a makefile for mahara etc
- the benefit of this is autocomplete. If a target doesn't make sense, then it should
- be available
- These secondary makefiles should only be pulled in after your master Makefile is
- conigured properly, eg to set the DB type, and the project type
-
- BEWARE of TABS vs spaces in Makefiles
+Beware of tabs vs spaces in Makefiles
 
  *VIM* add this to your .vimrc for correct tabs when editing Makefiles:
 
