@@ -3,6 +3,7 @@
 
 LocalBackupName ?= $(LocalDBName)-$(shell date +'%Y-%m-%d')
 LocalBackupDir  ?= /tmp/
+LocalBackup     ?= $(LocalBackupDir)$(LocalBackupName)
 
 # Load DB driver
 include make/database/$(LocalDBType)/load.mk

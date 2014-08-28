@@ -17,9 +17,9 @@ RestoreDBSudoUser ?= postgres
 RestoreDBName     ?= $(LocalDBName)
 RestoreDBUser     ?= $(LocalDBUser)
 
-RestoreBackupName ?= stage-$(LocalBackupName)
+RestoreBackupName ?= $(LocalBackupName)
 RestoreBackupDir  ?= $(LocalBackupDir)
-RestoreBackup     ?= $(LocalBackupDir)$(RestoreBackupName)
+RestoreBackup     ?= $(RestoreBackupDir)$(RestoreBackupName)
 
 
 ifeq ($(RestoreDBHost),)
@@ -37,11 +37,21 @@ refresh-database-retrieve:
 	ssh -t $(RestoreDBHost) "[ -f $(RestoreBackup).sql.gz ] || sudo -u $(RestoreDBSudoUser) pg_dump -Fc -v $(RestoreDBName) > $(RestoreBackup).sql.gz"
 	@echo
 	@#
+	@# -Fc = format for pg_restore
+	@# -v  = verbose
+	@#
+	@#
 	@# Now rsync progressive the backup over
 	@# we use progressive so if network fails we just run again to resume
 	@#
 	rsync -arv -h --partial --progress $(RestoreDBHost):$(RestoreBackup).sql.gz $(LocalBackupDir)
 	@echo
+	@#
+	@# -a         = archive mode
+	@# -r         = recursive
+	@# -v         = verbose
+	@# --partial  = resume if broken
+	@# --progress = show progress!
 	@#
 
 

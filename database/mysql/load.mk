@@ -6,3 +6,6 @@ refresh-database:
 
 sql-cli:
 	@mysql -u $(LocalDBUser) --password='$(LocalDBPass)' $(LocalDBName)
+
+
+
