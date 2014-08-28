@@ -1,17 +1,11 @@
 #
-# These targets are common for most types of 'web' projects
-# including moodle, drupal
+# WARNING: This is not a 'project' type, it is merely a refactoring of
+# make targets which are shared by other projects, namely drupal, moodle
+# and mahara.
 #
-#
 
 
-
-# Configured to point to vedra
-# Configured to look under path xyz on vedra
-# Configured to grab the latest version
 # Copy to /tmp on your local box
-# Restore
-# DB Config in env
 
 #
 rsync-site-data:
