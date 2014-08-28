@@ -34,3 +34,7 @@ config-project: config-database
 	@echo "LocalSitedata: $(LocalSitedata)"
 	@echo
 
+test:
+	./local/catalyst-test/runtests-ci.sh
+
+

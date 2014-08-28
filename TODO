@@ -1,4 +1,7 @@
 
+add test target for drupal
+add test target for mahara
+
 add vedra store for postgres
 add vedra store for mysql
 add stage store for mysql
