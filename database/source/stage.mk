@@ -14,7 +14,7 @@
 
 
 refresh-database-retrieve:
-	@echo "== refresh-database-retrieve =="
+	@echo "== refresh-database-retrieve: stage =="
 	@echo
 	@# This takes about a minute...
 	@# sudo -u postgres pg_dump -Fc alfredhealth-moodle > /tmp/alfredhealth-moodle.sql.gz
