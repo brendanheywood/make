@@ -33,6 +33,8 @@ ProjectType ?= unknown
 # The default restore type is vedra
 RestoreType ?= vedra
 
+DebianPackage = $(shell grep Package debian/control | cut -f2 -d' ')
+
 
 # There should be almost no real targets in this file
 # It should simply detect what 'type' of project we are and then
@@ -44,9 +46,8 @@ config: config-project
 	##########################
 	# Global config          #
 	##########################
-	@echo "Project type: $(ProjectType)"
-	@echo "Project name: $(ProjectName)"
-	@echo "Environments: $(EnvList)"
+	@echo "Project type:   $(ProjectType)"
+	@echo "Debian Package: $(DebianPackage)"
 
 # Almost targets should always be .PHONY
 .PHONY : config
