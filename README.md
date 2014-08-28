@@ -27,7 +27,7 @@ How to install
 If you're project is a 'normal'ish moodle, drupal, or mahara then
 this a oneliner, just add this to your Makefile:
 
-include make/global.mk
+```include make/global.mk```
 
 That's it!
 
@@ -45,10 +45,12 @@ How to contribute
 
  BEWARE of TABS vs spaces in Makefiles
 
- VIM tips- setup correct tabs when editing make files:
+ *VIM* add this to your .vimrc for correct tabs when editing Makefiles:
 
+```
   " Don't convert tabs to space when in a Makefile
   :autocmd FileType make set noexpandtab
+```
 
  configure with a bug tracker default regex
  - defaults to WR# as commit prefix - detects this in commit checker
