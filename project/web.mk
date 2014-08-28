@@ -8,16 +8,16 @@
 # Copy to /tmp on your local box
 
 #
-rsync-site-data:
-	@echo "Syncing site page"
+web-open:
+	@echo "URL: $(LocalWebRoot)"
+	@xdg-open $(LocalWebRoot)
 
 
-
-tail:
-# reach into apache
-# detect logfile
-# if needed detect rsyslog
-# trace path
+tail-error:
+	# reach into apache
+	# detect logfile
+	# if needed detect rsyslog
+	# trace path
 	tail -f $(LocalWebLog)
 
 

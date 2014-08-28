@@ -8,6 +8,10 @@ LocalDBPass   = $(shell ./make/extract config.php dbpass)
 LocalWebRoot  = $(shell ./make/extract config.php wwwroot)
 LocalSitedata = $(shell ./make/extract config.php dataroot)
 
+# load in common web targets
+include make/project/web.mk
+
+
 # load in database targets
 include make/database/load.mk
 
