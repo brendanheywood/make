@@ -30,11 +30,8 @@ ProjectType := moodle
 endif
 ProjectType ?= unknown
 
-
-# This is the list of environement you can refresh from
-# Typically this would be just 'stage', but for more complex setups
-# could be TODO refactor into 'store' types (eg ssh, vedra)
-EnvList ?= stage
+# The default restore type is vedra
+RestoreType ?= vedra
 
 
 # There should be almost no real targets in this file
