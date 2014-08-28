@@ -5,6 +5,6 @@ restore-from-tmp:
 
 
 sql-cli:
-	export PGPASSWORD=$(LocalDBPass); psql -h $(LocalDBHost) $(LocalDBName) $(LocalDBUser)
+	@export PGPASSWORD=$(LocalDBPass); psql -h $(LocalDBHost) $(LocalDBName) $(LocalDBUser)
 
 
