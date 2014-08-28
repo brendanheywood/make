@@ -13,9 +13,9 @@
 #
 # The rest will probably just work, if not set it explicitly
 
-RestoreDBSudoUser ?= postgres             # This is the root DB user on the remote box
-RestoreDBName     ?= $(LocalDBName)       #
-RestoreDBUser     ?= $(LocalDBUser)       #
+RestoreDBSudoUser ?= postgres
+RestoreDBName     ?= $(LocalDBName)
+RestoreDBUser     ?= $(LocalDBUser)
 
 RestoreBackupName ?= stage-$(LocalBackupName)
 RestoreBackupDir  ?= $(LocalBackupDir)
@@ -29,16 +29,19 @@ endif
 refresh-database-retrieve:
 	@echo "== refresh-database-retrieve: stage =="
 	@echo
-	@echo 'This could take a while ...'
 	@#
 	@# This target backs up the remote database
 	@# It only does it if there is not a backup made today, so if
 	@# you run it twice it should exit quickly
 	@#
 	ssh -t $(RestoreDBHost) "[ -f $(RestoreBackup).sql.gz ] || sudo -u $(RestoreDBSudoUser) pg_dump -Fc -v $(RestoreDBName) > $(RestoreBackup).sql.gz"
+	@echo
 	@#
 	@# Now rsync progressive the backup over
+	@# we use progressive so if network fails we just run again to resume
 	@#
-	@# scp $(StageDB):/tmp/alfredhealth-moodle.sql.gz /tmp/
+	rsync -arv -h --partial --progress $(RestoreDBHost):$(RestoreBackup).sql.gz $(LocalBackupDir)
+	@echo
+	@#
 
 
