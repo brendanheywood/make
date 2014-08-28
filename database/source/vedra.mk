@@ -6,7 +6,7 @@
 
 
 refresh-database-retrieve:
-	@echo "== refresh-database-retrieve =="
+	@echo "== refresh-database-retrieve: vedra =="
 	@echo
 	@# This takes about a minute...
 	@# sudo -u postgres pg_dump -Fc alfredhealth-moodle > /tmp/alfredhealth-moodle.sql.gz
