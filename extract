@@ -1,0 +1,40 @@
+#!/usr/bin/perl
+#
+# Very simple, a little bit ugly
+# Given a file and an $CFG variable extract it's value
+# maybe convert to a file that parses the php and turns into
+# a make compatible variable file and then import it
+
+use strict;
+
+if ($#ARGV ne 1){
+    print <<EOF;
+Usage:
+
+$0 file CFGvarname
+EOF
+}
+my $file = $ARGV[0];
+my $var = $ARGV[1];
+open(my $FILE, $file) or die "Can't read $file";
+my @lines = <$FILE>;
+close $FILE;
+
+# Strip comments
+@lines = map { $_ =~ s/#.*$//g; $_ } @lines;
+@lines = map { $_ =~ s/^\/\/.*$//g; $_ } @lines;
+@lines = map { $_ =~ s/\s\/\/.*$//g; $_ } @lines;
+
+@lines = grep (/$var/, @lines);
+
+# Now ditch empty lines
+@lines = grep { $_ ne '' } @lines;
+
+# extract var
+@lines = grep (s/^.*\$CFG->$var.*'(.*)'.*$/$1/g , @lines);
+
+if ($#lines eq 0){
+   print @lines;
+}
+
+

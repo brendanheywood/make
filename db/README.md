@@ -9,7 +9,7 @@ Each driver implements a set of common tasks:
 * sql-query
 * restore-from-tmp
 
-Which driver is loaded depends on the $DBTYPE variable. This
+Which driver is loaded depends on the $(LocalDBType) variable. This
 variable is either detected automatically where possible
 or you can set it manually.
 
