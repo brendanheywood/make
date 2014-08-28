@@ -1,0 +1,18 @@
+
+add vedra store for postgres
+add vedra store for mysql
+add stage store for mysql
+
+add simple log file detection and tail
+add rsyslog log file detection and tail
+
+add hooks for post restore wash
+
+add moodle wash
+ - replace domain name - need url of stage? get from db?
+
+ - global password reset
+
+ - dev conf? how to do
+
+
