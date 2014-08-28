@@ -8,7 +8,14 @@ LocalDBPass   = $(shell ./make/extract config.php dbpass)
 LocalWebRoot  = $(shell ./make/extract config.php wwwroot)
 LocalSitedata = $(shell ./make/extract config.php dataroot)
 
-include make/db/$(LocalDBType).mk
+# load in database targets
+include make/database/load.mk
+
+# load in sitedata targets
+include make/sitedata/load.mk
+
+# This declares that a moodle refresh entails both a DB restore and a sitedata restore
+refresh: refresh-database refresh-sitedata
 
 config-project:
 	##########################
@@ -24,5 +31,4 @@ config-project:
 	@echo "LocalWebRoot:  $(LocalWebRoot)"
 	@echo
 	@echo "LocalSitedata: $(LocalSitedata)"
-
 
