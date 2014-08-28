@@ -5,10 +5,10 @@ LocalBackupName ?= $(LocalDBName)-$(shell date +'%Y-%m-%d')
 LocalBackupDir  ?= /tmp/
 
 # Load DB driver
-include make/database/$(LocalDBType).mk
+include make/database/$(LocalDBType)/load.mk
 
 # load in restore targets
-include make/database/source/$(RestoreType).mk
+include make/database/$(LocalDBType)/source/$(RestoreType).mk
 
 config-database:
 	##########################
