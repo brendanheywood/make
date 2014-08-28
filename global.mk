@@ -66,7 +66,13 @@
 # be available
 # These secondary makefiles should only be pulled in after your master Makefile is
 # conigured properly, eg to set the DB type, and the project type
-
+#
+# BEWARE of TABS vs spaces in Makefiles
+#
+# VIM tips- setup correct tabs when editing make files:
+#
+#  " Don't convert tabs to space when in a Makefile
+#  :autocmd FileType make set noexpandtab
 
 # configure with a bug tracker default regex
 # - defaults to WR# as commit prefix - detects this in commit checker
