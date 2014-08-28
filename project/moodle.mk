@@ -17,18 +17,16 @@ include make/sitedata/load.mk
 # This declares that a moodle refresh entails both a DB restore and a sitedata restore
 refresh: refresh-database refresh-sitedata
 
-config-project:
+config-project: config-database
 	##########################
 	# Moodle config          #
 	##########################
-	@echo
 	@echo "LocalDBType:   $(LocalDBType)"
 	@echo "LocalDBHost:   $(LocalDBHost)"
 	@echo "LocalDBName:   $(LocalDBName)"
 	@echo "LocalDBUser:   $(LocalDBUser)"
 	@echo "LocalDBUser:   $(LocalDBPass)"
-	@echo
 	@echo "LocalWebRoot:  $(LocalWebRoot)"
-	@echo
 	@echo "LocalSitedata: $(LocalSitedata)"
+	@echo
 

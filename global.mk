@@ -42,12 +42,12 @@ DebianPackage = $(shell grep Package debian/control | cut -f2 -d' ')
 include make/project/$(ProjectType).mk
 
 config: config-project
-	@echo
 	##########################
 	# Global config          #
 	##########################
 	@echo "Project type:   $(ProjectType)"
 	@echo "Debian Package: $(DebianPackage)"
+	@echo
 
 # Almost targets should always be .PHONY
 .PHONY : config

@@ -4,20 +4,41 @@
 # as a working test implementation and also may have value for clients who
 # do things their own way.
 #
-# To configure add these to your root Makefile:
+# This assumes that you have ssh access, and sudo access as the postgres user
 #
-# RestoreRtype=stage
-# RestoreDBHost=ahnedevweb01
+# The minimum config to add to your root Makefile:
 #
-# If all the database settings are the same as local that's it, if they are
-# different then set them explicitly:
+#  RestoreType=stage                      # tell make to this this backup source
+#  RestoreDBHost=ahnedevweb01             # the hostname of the database server
+#
+# The rest will probably just work, if not set it explicitly
 
+RestoreDBSudoUser ?= postgres             # This is the root DB user on the remote box
+RestoreDBName     ?= $(LocalDBName)       #
+RestoreDBUser     ?= $(LocalDBUser)       #
+
+RestoreBackupName ?= stage-$(LocalBackupName)
+RestoreBackupDir  ?= $(LocalBackupDir)
+RestoreBackup     ?= $(LocalBackupDir)$(RestoreBackupName)
+
+
+ifeq ($(RestoreDBHost),)
+$(error Missing config: Please add RestoreDBHost to your Makefile )
+endif
 
 refresh-database-retrieve:
 	@echo "== refresh-database-retrieve: stage =="
 	@echo
-	@# This takes about a minute...
-	@# sudo -u postgres pg_dump -Fc alfredhealth-moodle > /tmp/alfredhealth-moodle.sql.gz
-	@# This takes up to 15 minutes ...
+	@echo 'This could take a while ...'
+	@#
+	@# This target backs up the remote database
+	@# It only does it if there is not a backup made today, so if
+	@# you run it twice it should exit quickly
+	@#
+	ssh -t $(RestoreDBHost) "[ -f $(RestoreBackup).sql.gz ] || sudo -u $(RestoreDBSudoUser) pg_dump -Fc -v $(RestoreDBName) > $(RestoreBackup).sql.gz"
+	@#
+	@# Now rsync progressive the backup over
+	@#
 	@# scp $(StageDB):/tmp/alfredhealth-moodle.sql.gz /tmp/
+
 
