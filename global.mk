@@ -24,14 +24,19 @@
 # Look at README.md for more info
 
 
+ROOT = make
+
+
 # Detect what type of project we are
 ifneq ($(wildcard version.php),)
 ProjectType := moodle
 endif
+ifneq ($(wildcard htdocs/about.php),)
+ProjectType := mahara
+endif
 ProjectType ?= unknown
 
-# The default restore type is vedra
-RestoreType ?= vedra
+
 
 DebianPackage = $(shell grep Package debian/control | cut -f2 -d' ')
 
@@ -39,14 +44,14 @@ DebianPackage = $(shell grep Package debian/control | cut -f2 -d' ')
 # There should be almost no real targets in this file
 # It should simply detect what 'type' of project we are and then
 # load more targets accordingly
-include make/project/$(ProjectType).mk
+include $(ROOT)/project/$(ProjectType).mk
 
 config: config-project
 	##########################
 	# Global config          #
 	##########################
-	@echo "Project type:   $(ProjectType)"
-	@echo "Debian Package: $(DebianPackage)"
+	@echo " Project type:   $(ProjectType)"
+	@echo " Debian Package: $(DebianPackage)"
 	@echo
 
 # Almost targets should always be .PHONY

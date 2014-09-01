@@ -7,16 +7,18 @@
 
 use strict;
 
-if ($#ARGV ne 1){
+if ($#ARGV ne 2){
     print <<EOF;
 Usage:
 
-$0 file CFGvarname
+$0 file CFGobj CFGattr
 EOF
+    exit 1;
 }
 my $file = $ARGV[0];
-my $var = $ARGV[1];
-open(my $FILE, $file) or die "Can't read $file";
+my $CFG = $ARGV[1];
+my $var = $ARGV[2];
+open(my $FILE, $file) or die "Can't read $file for $CFG -> $var";
 my @lines = <$FILE>;
 close $FILE;
 
@@ -25,16 +27,19 @@ close $FILE;
 @lines = map { $_ =~ s/^\/\/.*$//g; $_ } @lines;
 @lines = map { $_ =~ s/\s\/\/.*$//g; $_ } @lines;
 
+
 @lines = grep (/$var/, @lines);
 
 # Now ditch empty lines
 @lines = grep { $_ ne '' } @lines;
 
 # extract var
-@lines = grep (s/^.*\$CFG->$var.*'(.*)'.*$/$1/g , @lines);
+@lines = grep (s/^.*\$$CFG->$var.*'(.*)'.*$/$1/g , @lines);
 
 if ($#lines eq 0){
-   print @lines;
+    print @lines;
+} else {
+    die "Didn't find a single unique value (".($#lines+1).") for $file for $CFG -> $var\n" . (join "\n",  @lines);
 }
 
 
