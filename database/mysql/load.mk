@@ -7,5 +7,8 @@ refresh-database:
 sql-cli:
 	@mysql -u $(LocalDBUser) --password='$(LocalDBPass)' $(LocalDBName)
 
+init-database:
+	# create the db locally
+
 
 

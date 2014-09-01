@@ -7,3 +7,8 @@ refresh-sitedata: refresh-sitedata-retrieve
 	@#
 	@# then do the restore gunzip
 	@#
+
+init-sitedata:
+	# auto create the sitedata dir
+
+

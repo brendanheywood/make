@@ -29,8 +29,11 @@ tail-error:
 	# trace path
 	tail -f $(LocalWebLog)
 
+init-web:
+	@# no-op, could create apache conf?
+
 
 # Almost all targets should always be .PHONY
-.PHONY : config-web web-open tail-error
+.PHONY : config-web web-open tail-error init-web
 
 

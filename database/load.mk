@@ -30,5 +30,5 @@ config-database:
 	@echo
 
 # Almost targets should always be .PHONY
-.PHONY : config-database refresh-database sql-cli
+.PHONY : config-database refresh-database sql-cli init-database
 
