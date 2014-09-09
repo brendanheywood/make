@@ -30,7 +30,7 @@ include $(ROOT)/sitedata/load.mk
 test:
 	@# As a general rule we don't want too much app login in this make repo so
 	@# just call out to the moodle specific stuff instead of doing it here
-	./local/catalyst-test/runtests-ci.sh
+	./local/catalysttest/runtests-ci.sh
 
 # almost targets should always be .phony
 .phony : test
