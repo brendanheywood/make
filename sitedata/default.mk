@@ -1,4 +1,6 @@
 
+LocalSiteDataSudoUser ?= www-data
+
 refresh-sitedata: refresh-sitedata-retrieve
 	@echo "== refresh-sitedata =="
 	@echo
@@ -10,5 +12,5 @@ refresh-sitedata: refresh-sitedata-retrieve
 
 init-sitedata:
 	# auto create the sitedata dir
-
+	sudo -u $(LocalSiteDataSudoUser) mkdir -p $(LocalSitedata) --mode=775
 
