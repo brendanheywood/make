@@ -26,14 +26,17 @@ LocalSitedata = $(shell ./$(ROOT)/extract $(CfgFile) $(CfgObj) dataroot)
 include $(ROOT)/sitedata/load.mk
 
 
-test:
-	@# curl -s https://getcomposer.org/installer | php
-	@# php composer.phar install --dev
+composer.phar:
+	curl -s https://getcomposer.org/installer | php
+
+test: composer.phar
+
+	php composer.phar install --dev
 	@#
 	@# As a general rule we don't want too much app login in this make repo so
 	@# just call out to the moodle specific stuff instead of doing it here
-	# ./local/catalysttest/runtests-ci.sh
+	./local/catalysttest/runtests-ci.sh
 
-# almost targets should always be .phony
+# almost all targets should always be .phony
 .phony : test
 
